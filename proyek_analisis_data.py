@@ -1,7 +1,8 @@
-import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
 import seaborn as sns
-from babel.numbers import format_currency
+import streamlit as st
+
 sns.set(style='dark')
 day_df = pd.read_csv('day.csv')
 
