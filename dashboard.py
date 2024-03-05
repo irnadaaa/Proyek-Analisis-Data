@@ -12,7 +12,7 @@ hour_df = pd.read_csv('hour.csv')
 
 with st.sidebar:
     # Menambahkan logo perusahaan
-    st.image("https://github.com/irnadaaa/Proyek-Analisis-Data/blob/main/logo1.png")
+    st.image("https://github.com/irnadaaa/Proyek-Analisis-Data/assets/raw/main/logo1.png")
     
 
 #Menghitung Jumlah Pengguna Pertahun
