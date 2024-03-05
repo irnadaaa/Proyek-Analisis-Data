@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
+from PIL import Image
 
 st.title("Bike Sharing Dashboard:sparkles:")
 
@@ -10,7 +11,7 @@ day_df = pd.read_csv('day_data.csv')
 hour_df = pd.read_csv('hour.csv')
 
 
-st.image("https://github.com/irnadaaa/Proyek-Analisis-Data/assets/raw/main/logo1.png")
+st.image("https://drive.google.com/file/d/1zW45LqE_jE-c5i0zhReoklWmQvpcNkrZ/view?usp=sharing")
     
 
 #Menghitung Jumlah Pengguna Pertahun
