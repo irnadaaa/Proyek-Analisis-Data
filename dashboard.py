@@ -6,9 +6,23 @@ import streamlit as st
 st.title("Bike Sharing Dashboard")
 
 #DataFrame
-day_df = pd.read_csv('day.csv')
+day_df = pd.read_csv('day_data.csv')
 hour_df = pd.read_csv('hour.csv')
 
+#Periode 
+min_date = day_df["dteday"].min()
+max_date = day_df["dteday"].max()
+ 
+with st.sidebar:
+    # Menambahkan logo perusahaan
+    st.image("https://github.com/irnadaaa/Proyek-Analisis-Data/blob/main/logo1.png")
+    
+    # Mengambil start_date & end_date dari date_input
+    start_date, end_date = st.date_input(
+        label='Rentang Waktu',min_value=min_date,
+        max_value=max_date,
+        value=[min_date, max_date]
+    )
 #Menghitung Jumlah Pengguna Pertahun
 total_cnt = day_df.groupby('yr').agg({'cnt': 'sum'}).reset_index()
 
