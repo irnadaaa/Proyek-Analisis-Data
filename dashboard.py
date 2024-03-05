@@ -3,16 +3,31 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 
-st.title("Bike Sharing Dashboard")
+st.title("Bike Sharing Dashboard:sparkles:")
 
 #DataFrame
 day_df = pd.read_csv('day_data.csv')
 hour_df = pd.read_csv('hour.csv')
 
-
+min_date = day_df["dteday"].min()
+max_date = day_df["dteday"].max()
+ 
 with st.sidebar:
     # Menambahkan logo perusahaan
     st.image("https://github.com/irnadaaa/Proyek-Analisis-Data/assets/raw/main/logo1.png")
+    
+    # Mengambil start_date & end_date dari date_input
+    start_date, end_date = st.date_input(
+        label='Rentang Waktu',min_value=min_date,
+        max_value=max_date,
+        value=[min_date, max_date]
+    )
+main_df = day_df[(day_df["dteday"] >= str(start_date)) & 
+                (day_df["dteday"] <= str(end_date))]
+
+registered_df = create_registered_df(main_df)
+casual_df = create_casual_items_df(main_df)
+cnt_df = create_cnt_df(main_df)
     
 
 #Menghitung Jumlah Pengguna Pertahun
