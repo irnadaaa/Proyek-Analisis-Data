@@ -9,7 +9,7 @@ day_df = pd.read_csv('day.csv')
 
 total_cnt = day_df.groupby('yr').agg({'cnt': 'sum'}).reset_index()
 
-st.heading("User Counts of The Year")
+st.header("User Counts of The Year")
 
 st.write("Total User Counts per Year:")
 st.write(total_cnt)
@@ -28,7 +28,7 @@ st.pyplot(plt)
 monthly_cnt = day_df[day_df['yr'] == 1].groupby('mnth')['cnt'].sum().reset_index()
 
 # Create a Streamlit app
-st.heading("Number of User per Month (2012)")
+st.header("Number of User per Month (2012)")
 
 # Display the DataFrame with monthly counts
 st.write("Monthly User Counts in 2012:")
