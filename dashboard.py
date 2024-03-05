@@ -5,20 +5,6 @@ import streamlit as st
 
 st.title("Bike Sharing Dashboard")
 
-day_df = pd.read_csv('day.csv')
-min_date = day_df["dteday"].min()
-max_date = day_df["dteday"].max()
- 
-with st.sidebar:
-    # Menambahkan logo perusahaan
-    st.image("https://github.com/irnadaaa/Proyek-Analisis-Data/blob/main/logo.jpg")
-    
-    # Mengambil start_date & end_date dari date_input
-    start_date, end_date = st.date_input(
-        label='Rentang Waktu',min_value=min_date,
-        max_value=max_date,
-        value=[min_date, max_date]
-    )
 sns.set(style='dark')
 
 
@@ -40,3 +26,24 @@ plt.tick_params(axis='x', labelsize=12)
 st.pyplot(plt)
 
 
+monthly_cnt = day_df[day_df['yr'] == 1].groupby('mnth')['cnt'].sum().reset_index()
+
+# Create a Streamlit app
+st.heading("Number of User per Month (2012)")
+
+# Display the DataFrame with monthly counts
+st.write("Monthly User Counts in 2012:")
+st.write(monthly_cnt)
+
+# Create a line plot
+plt.figure(figsize=(10, 5))
+plt.plot(monthly_cnt['mnth'], monthly_cnt["cnt"], marker='o', color='purple', linewidth=2)
+plt.title("Number of User per Month (2012)", loc="center", fontsize=20)
+plt.xlabel('Month')
+plt.ylabel('User Count')
+plt.xticks(range(1, 13), ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
+plt.xticks(fontsize=10)
+plt.yticks(fontsize=10)
+
+# Display the plot in Streamlit
+st.pyplot(plt)
