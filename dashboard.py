@@ -5,8 +5,7 @@ import streamlit as st
 
 st.title("Bike Sharing Dashboard")
 
-sns.set(style='dark')
-
+day_df = pd.read_csv('day.csv')
 
 total_cnt = day_df.groupby('yr').agg({'cnt': 'sum'}).reset_index()
 
