@@ -54,7 +54,8 @@ with st.sidebar:
         max_value=max_date,
         value=[min_date, max_date]
     )
-    
+
+st.write(df.columns)
 main_df = day_df[(day_df["dteday"] >= str(start_date)) & (day_df["dteday"] <= str(end_date))]
 
 # Menyiapkan berbagai dataframe
