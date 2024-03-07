@@ -2,13 +2,66 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
-from PIL import Image
 
-st.title("Bike Sharing Dashboard:sparkles:")
+# Set style seaborn
+sns.set(style='dark')
+
+# Menyiapkan daily_rent_df
+def create_daily_rent_df(df):
+    daily_rent_df = df.groupby(by="dteday").agg({
+        "count": "sum"
+    }).reset_index()
+    return daily_rent_df
+    
+# Menyiapkan monthly_rent_df
+def create_monthly_rent_df(df):
+    monthly_rent_df = df.groupby(by='mnth').agg({
+        'count': 'sum'
+    })
+    ordered_months = [
+        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    ]
+    monthly_rent_df = monthly_rent_df.reindex(ordered_months, fill_value=0)
+    return monthly_rent_df
+    
+# Menyiapkan weekday_rent_df
+def create_weekday_rent_df(df):
+    weekday_rent_df = df.groupby(by='weekday').agg({
+        'count': 'sum'
+    }).reset_index()
+    return weekday_rent_df
 
 #DataFrame
 day_df = pd.read_csv('day_data.csv')
-hour_df = pd.read_csv('hour.csv')
+hour_df = pd.read_csv('hour_data.csv')
+
+datetime_columns = ["dteday"]
+data_df.sort_values(by="dteday", inplace=True)
+data_df.reset_index(inplace=True)
+for column in datetime_columns:
+    data_df[column] = pd.to_datetime(data_df[column])
+
+# Filter data
+min_date = day_df["dteday"].min()
+max_date = day_df["dteday"].max()
+with st.sidebar:
+    # Menambahkan logo perusahaan
+    st.image("logo1")
+    # Mengambil start_date & end_date dari date_input
+    start_date, end_date = st.date_input(
+        label="Timeline",min_value=min_date,
+        max_value=max_date,
+        value=[min_date, max_date]
+    )
+main_df = data_df[(data_df["dteday"] >= str(start_date)) & (data_df["dteday"] <= str(end_date))]
+# Menyiapkan berbagai dataframe
+daily_rent_df = create_daily_rent_df(main_df)
+monthly_rent_df = create_monthly_rent_df(main_df)
+weekday_rent_df = create_weekday_rent_df(main_df)
+
+#Judul Dashboard
+st.title("Bike Sharing Dashboard:sparkles:")
 
 
 selected = st.sidebar.radio('Select Option', ['Kinerja Setahun Terakhir', 'Jumlah Pengguna Berdasar Tipe Pengguna'])
