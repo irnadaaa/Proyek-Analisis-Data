@@ -55,7 +55,8 @@ with st.sidebar:
         value=[min_date, max_date]
     )
     
-main_df == day_df[(day_df["dteday"] >= str(start_date)) & (day_df["dteday"] <= str(end_date))]
+main_df = day_df[(day_df["dteday"] >= str(start_date)) & (day_df["dteday"] <= str(end_date))]
+
 # Menyiapkan berbagai dataframe
 daily_rent_df = create_daily_rent_df(main_df)
 monthly_rent_df = create_monthly_rent_df(main_df)
