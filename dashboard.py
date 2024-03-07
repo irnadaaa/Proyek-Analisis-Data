@@ -13,14 +13,15 @@ hour_df = pd.read_csv('hour_data.csv')
 
 with st.sidebar:
     # Menambahkan logo perusahaan
+    st.title("Main Menu")
     st.image("logo1.png")
 
 #Judul Dashboard
-st.title("Bike Sharing Dashboard:sparkles:")
+st.title("Bike Sharing Dashboard 🚲:sparkles:")
 st.markdown("Time Period : 2011/1/1 - 2012/12/31")
 
 
-selected = st.sidebar.radio('Select Option', ['Kinerja Setahun Terakhir', 'Jumlah Pengguna Berdasar Tipe Pengguna'])
+selected = st.sidebar.radio('Pilih Opsi', ['Kinerja Setahun Terakhir', 'Jumlah Pengguna Berdasar Tipe Pengguna'])
     
 if selected == 'Kinerja Setahun Terakhir':
     #Menghitung Jumlah Pengguna Pertahun
