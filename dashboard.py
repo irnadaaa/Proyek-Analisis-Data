@@ -37,10 +37,10 @@ day_df = pd.read_csv('day_data.csv')
 hour_df = pd.read_csv('hour_data.csv')
 
 datetime_columns = ["dteday"]
-data_df.sort_values(by="dteday", inplace=True)
-data_df.reset_index(inplace=True)
+day_df.sort_values(by="dteday", inplace=True)
+day_df.reset_index(inplace=True)
 for column in datetime_columns:
-    data_df[column] = pd.to_datetime(data_df[column])
+    day_df[column] = pd.to_datetime(day_df[column])
 
 # Filter data
 min_date = day_df["dteday"].min()
@@ -54,7 +54,7 @@ with st.sidebar:
         max_value=max_date,
         value=[min_date, max_date]
     )
-main_df = data_df[(data_df["dteday"] >= str(start_date)) & (data_df["dteday"] <= str(end_date))]
+main_df = day_df[(day_df["dteday"] >= str(start_date)) & (day_df["dteday"] <= str(end_date))]
 # Menyiapkan berbagai dataframe
 daily_rent_df = create_daily_rent_df(main_df)
 monthly_rent_df = create_monthly_rent_df(main_df)
