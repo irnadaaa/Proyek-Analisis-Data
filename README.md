@@ -2,7 +2,7 @@
 ```
 Name         : Irnada Al Anati
 Email        : irnadaaa@student.ub.ac.id
-ID Dicoding  : Irnadaaa
+ID Dicoding  : irnadaaa
 ```
 
 ## Setup environment
