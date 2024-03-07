@@ -10,22 +10,10 @@ sns.set(style='dark')
 day_df = pd.read_csv('day_data.csv')
 hour_df = pd.read_csv('hour_data.csv')
 
-datetime_columns = ["dteday"]
-day_df.sort_values(by="dteday", inplace=True)
-day_df.reset_index(inplace=True)
-for column in datetime_columns:
-    day_df[column] = pd.to_datetime(day_df[column])
 
 with st.sidebar:
     # Menambahkan logo perusahaan
     st.image("logo1.png")
-    # Mengambil start_date & end_date dari date_input
-    start_date, end_date = st.date_input(
-        label="Timeline",min_value=min_date,
-        max_value=max_date,
-        value=[min_date, max_date]
-    )
-
 
 #Judul Dashboard
 st.title("Bike Sharing Dashboard:sparkles:")
