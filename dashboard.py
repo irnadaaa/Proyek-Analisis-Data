@@ -17,7 +17,7 @@ with st.sidebar:
 
 #Judul Dashboard
 st.title("Bike Sharing Dashboard:sparkles:")
-st.subheader("Time Period : 2011/1/1 - 2012/12/31")
+st.markdown("Time Period : 2011/1/1 - 2012/12/31")
 
 
 selected = st.sidebar.radio('Select Option', ['Kinerja Setahun Terakhir', 'Jumlah Pengguna Berdasar Tipe Pengguna'])
