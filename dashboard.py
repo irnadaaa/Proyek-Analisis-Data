@@ -47,7 +47,7 @@ min_date = day_df["dteday"].min()
 max_date = day_df["dteday"].max()
 with st.sidebar:
     # Menambahkan logo perusahaan
-    st.image("logo1")
+    st.image("logo1.png")
     # Mengambil start_date & end_date dari date_input
     start_date, end_date = st.date_input(
         label="Timeline",min_value=min_date,
