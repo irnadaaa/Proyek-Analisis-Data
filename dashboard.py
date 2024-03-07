@@ -40,7 +40,8 @@ if selected == 'Kinerja Setahun Terakhir':
     plt.tick_params(axis='x', labelsize=12)
 
     st.pyplot(plt)
-
+    st.markdown(f"Berdasarkan grafik di ats dapat diketahui kinerja selama setahun terakhir mengalami kenaikan dari pada setahun sebelumnya. Berikutnya akan dianalisis mengenai kinerja rental bulanan hingga per jam pada setahun terakhir.")
+    
     #Menghitung Jumlah Pengguna Bulanan di Tahun 2012
     monthly_cnt = day_df[day_df['yr'] == 1].groupby('mnth')['cnt'].sum().reset_index()
     
