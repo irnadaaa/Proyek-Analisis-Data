@@ -6,32 +6,6 @@ import streamlit as st
 # Set style seaborn
 sns.set(style='dark')
 
-# Menyiapkan daily_rent_df
-def create_daily_rent_df(df):
-    daily_rent_df = df.groupby(by="dteday").agg({
-        "cnt": "sum"
-    }).reset_index()
-    return daily_rent_df
-    
-# Menyiapkan monthly_rent_df
-def create_monthly_rent_df(df):
-    monthly_rent_df = df.groupby(by='mnth').agg({
-        'cnt': 'sum'
-    })
-    ordered_months = [
-        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-    ]
-    monthly_rent_df = monthly_rent_df.reindex(ordered_months, fill_value=0)
-    return monthly_rent_df
-    
-# Menyiapkan weekday_rent_df
-def create_weekday_rent_df(df):
-    weekday_rent_df = df.groupby(by='weekday').agg({
-        'cnt': 'sum'
-    }).reset_index()
-    return weekday_rent_df
-
 #DataFrame
 day_df = pd.read_csv('day_data.csv')
 hour_df = pd.read_csv('hour_data.csv')
@@ -42,9 +16,6 @@ day_df.reset_index(inplace=True)
 for column in datetime_columns:
     day_df[column] = pd.to_datetime(day_df[column])
 
-# Filter data
-min_date = day_df["dteday"].min()
-max_date = day_df["dteday"].max()
 with st.sidebar:
     # Menambahkan logo perusahaan
     st.image("logo1.png")
@@ -56,15 +27,9 @@ with st.sidebar:
     )
 
 
-main_df = day_df[(day_df["dteday"] >= str(start_date)) & (day_df["dteday"] <= str(end_date))]
-
-# Menyiapkan berbagai dataframe
-daily_rent_df = create_daily_rent_df(main_df)
-monthly_rent_df = create_monthly_rent_df(main_df)
-weekday_rent_df = create_weekday_rent_df(main_df)
-
 #Judul Dashboard
 st.title("Bike Sharing Dashboard:sparkles:")
+st.subheader("Time Period : 2011/1/1 - 2012/12/31")
 
 
 selected = st.sidebar.radio('Select Option', ['Kinerja Setahun Terakhir', 'Jumlah Pengguna Berdasar Tipe Pengguna'])
