@@ -9,14 +9,14 @@ sns.set(style='dark')
 # Menyiapkan daily_rent_df
 def create_daily_rent_df(df):
     daily_rent_df = df.groupby(by="dteday").agg({
-        "count": "sum"
+        "cnt": "sum"
     }).reset_index()
     return daily_rent_df
     
 # Menyiapkan monthly_rent_df
 def create_monthly_rent_df(df):
     monthly_rent_df = df.groupby(by='mnth').agg({
-        'count': 'sum'
+        'cnt': 'sum'
     })
     ordered_months = [
         'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
@@ -28,7 +28,7 @@ def create_monthly_rent_df(df):
 # Menyiapkan weekday_rent_df
 def create_weekday_rent_df(df):
     weekday_rent_df = df.groupby(by='weekday').agg({
-        'count': 'sum'
+        'cnt': 'sum'
     }).reset_index()
     return weekday_rent_df
 
